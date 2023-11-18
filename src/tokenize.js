@@ -22,6 +22,11 @@ const tokenize = (input) => {
       cursor++;
       continue;
     }
+
+    if (isWhitespace(character)) {
+      cursor++;
+      continue;
+    }
   }
 
   return tokens;
