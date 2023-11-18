@@ -84,7 +84,7 @@ describe(tokenize, () => {
     expect(tokenize(input)).toEqual(result);
   });
 
-  it.skip('should ignore whitespace', () => {
+  it('should ignore whitespace', () => {
     const input = '   (add    2 3)';
     const result = [
       { type: 'Parenthesis', value: '(' },
