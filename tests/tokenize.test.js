@@ -1,7 +1,7 @@
 import { tokenize } from '../src/tokenize';
 
 describe(tokenize, () => {
-  it.skip('should return an array', () => {
+  it('should return an array', () => {
     expect(Array.isArray(tokenize(''))).toBe(true);
   });
 
