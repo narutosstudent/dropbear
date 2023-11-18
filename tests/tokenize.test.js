@@ -5,7 +5,7 @@ describe(tokenize, () => {
     expect(Array.isArray(tokenize(''))).toBe(true);
   });
 
-  it.skip('should be able to tokenize a pair of parentheses', () => {
+  it('should be able to tokenize a pair of parentheses', () => {
     const input = '()';
     const result = [
       { type: 'Parenthesis', value: '(' },
