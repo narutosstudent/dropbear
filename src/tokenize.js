@@ -48,27 +48,31 @@ const tokenize = (input) => {
     if (isLetter(character)) {
       // handle case if its `add` token, then we want to add the whole word
       let symbol = character;
-      const isAddToken =
-        character === 'a' &&
-        input[cursor + 1] === 'd' &&
-        input[cursor + 2] === 'd';
-      if (isAddToken) {
-        symbol += input[++cursor];
-        symbol += input[++cursor];
 
-        tokens.push({
-          type: 'Name',
-          value: symbol,
-        });
-
-        cursor++;
-        continue;
+      while (isLetter(input[++cursor])) {
+        symbol += input[cursor];
       }
 
       tokens.push({
         type: 'Name',
-        value: character,
+        value: symbol,
       });
+
+      continue;
+    }
+
+    if (isQuote(character)) {
+      let string = '';
+
+      while (!isQuote(input[++cursor])) {
+        string += input[cursor];
+      }
+
+      tokens.push({
+        type: 'String',
+        value: string,
+      });
+
       cursor++;
       continue;
     }
