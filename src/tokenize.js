@@ -36,7 +36,6 @@ const tokenize = (input) => {
         number += input[++cursor]; // Increment cursor and append to number
       }
 
-      // Push the complete number token after constructing the full number
       tokens.push({
         type: 'Number',
         value: Number(number),
