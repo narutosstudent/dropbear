@@ -29,15 +29,43 @@ const tokenize = (input) => {
     }
 
     if (isNumber(character)) {
+      let number = character;
+
+      // Use a while loop to construct the full number
+      while (isNumber(input[cursor + 1])) {
+        number += input[++cursor]; // Increment cursor and append to number
+      }
+
+      // Push the complete number token after constructing the full number
       tokens.push({
         type: 'Number',
-        value: Number(character),
+        value: Number(number),
       });
+
       cursor++;
       continue;
     }
 
     if (isLetter(character)) {
+      // handle case if its `add` token, then we want to add the whole word
+      let symbol = character;
+      const isAddToken =
+        character === 'a' &&
+        input[cursor + 1] === 'd' &&
+        input[cursor + 2] === 'd';
+      if (isAddToken) {
+        symbol += input[++cursor];
+        symbol += input[++cursor];
+
+        tokens.push({
+          type: 'Name',
+          value: symbol,
+        });
+
+        cursor++;
+        continue;
+      }
+
       tokens.push({
         type: 'Name',
         value: character,
